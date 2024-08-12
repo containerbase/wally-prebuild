@@ -21,3 +21,11 @@ git clone https://github.com/UpliftGames/wally.git /usr/src/wally
 # create folders
 create_tool_path > /dev/null
 mkdir /cache
+
+echo "------------------------"
+echo "init repo"
+
+pushd /usr/src/wally > /dev/null
+cargo update
+cargo fetch
+git reset --hard
