@@ -1,0 +1,10 @@
+{
+  "image": "wally",
+  "depName": "UpliftGames/wally",
+  "datasource": "github-releases",
+  "versioning": "semver",
+  "extractVersion": "v(?<version>.+)",
+  "startVersion": "0.3.0",
+  "ignoredVersions": [],
+  "reverse": true
+}
