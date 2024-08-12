@@ -45,7 +45,3 @@ ENV TOOL_NAME=wally
 RUN install-builder.sh
 
 WORKDIR /usr/src/wally
-
-ENV OPENSSL_LIB_DIR=/usr/lib/x86_64-linux-gnu OPENSSL_INCLUDE_DIR=/usr/include/openssl
-
-RUN builder.sh 0.3.2
