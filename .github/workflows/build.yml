@@ -50,10 +50,10 @@ jobs:
       matrix:
         distro:
           - focal
-          # - jammy
+          - jammy
         arch:
           - x86_64
-          # - aarch64
+          - aarch64
 
     env:
       DISTRO: ${{ matrix.distro }} # build target, name required by binary-builder
@@ -68,7 +68,6 @@ jobs:
           command: binary-builder
           dry-run: ${{github.ref != 'refs/heads/main'}}
           token: ${{ secrets.GITHUB_TOKEN }}
-          last-only: true
 
   # Catch-all required check for matrix
   success:
