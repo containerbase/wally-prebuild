@@ -31,7 +31,7 @@ RUN install-containerbase
 
 
 # renovate: datasource=github-tags packageName=git/git
-RUN install-tool git v2.48.0
+RUN install-tool git v2.48.1
 
 # renovate: datasource=docker versioning=docker
 RUN install-tool rust 1.84.0
