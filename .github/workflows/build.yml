@@ -21,7 +21,7 @@ env:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -43,7 +43,8 @@ jobs:
   build:
     needs:
       - lint
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.arch.os }}
+    name: build (${{ matrix.distro }}, ${{ matrix.arch.name }})
 
     strategy:
       fail-fast: false
@@ -52,12 +53,14 @@ jobs:
           - focal
           - jammy
         arch:
-          - x86_64
-          - aarch64
+          - name: x86_64
+            os: ubuntu-24.04
+          - name: aarch64
+            os: ubuntu-24.04-arm
 
     env:
       DISTRO: ${{ matrix.distro }} # build target, name required by binary-builder
-      ARCH: ${{ matrix.arch }} # build target, name required by binary-builder
+      ARCH: ${{ matrix.arch.name }} # build target, name required by binary-builder
 
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -72,6 +75,7 @@ jobs:
   # Catch-all required check for matrix
   success:
     needs:
+      - lint
       - build
     runs-on: ubuntu-latest
     timeout-minutes: 1
@@ -81,4 +85,9 @@ jobs:
         if: |
           needs.build.result == 'failure' ||
           needs.build.result == 'cancelled'
+        run: exit 1
+      - name: Fail for failed or cancelled lint
+        if: |
+          needs.lint.result == 'failure' ||
+          needs.lint.result == 'cancelled'
         run: exit 1
