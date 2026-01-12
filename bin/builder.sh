@@ -8,7 +8,7 @@ set -e
 . /usr/local/containerbase/utils/v2/overrides.sh
 
 # trim leading v
-TOOL_VERSION=${1#v}
+export TOOL_VERSION=${1#v}
 
 # shellcheck disable=SC1091
 CODENAME=$(. /etc/os-release && echo "${VERSION_CODENAME}")
