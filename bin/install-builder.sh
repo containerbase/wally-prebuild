@@ -26,6 +26,5 @@ echo "------------------------"
 echo "init repo"
 
 pushd /usr/src/wally > /dev/null
-cargo update
-cargo fetch
-git reset --hard
+# use the committed lockfile, some of its crates are yanked and can't be resolved again
+cargo fetch --locked
