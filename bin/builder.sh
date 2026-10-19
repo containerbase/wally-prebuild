@@ -27,8 +27,8 @@ fi
 echo "------------------------"
 echo "init repo"
 git reset --hard "v${TOOL_VERSION}"
-cargo update
-cargo fetch
+# use the committed lockfile, some of its crates are yanked and can't be resolved again
+cargo fetch --locked
 
 
 echo "------------------------"
