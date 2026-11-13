@@ -34,7 +34,7 @@ RUN install-containerbase
 RUN install-tool git v2.56.1
 
 # renovate: datasource=docker versioning=docker
-RUN install-tool rust 1.99.1
+RUN install-tool rust 1.100.0
 
 ENTRYPOINT [ "dumb-init", "--", "builder.sh" ]
 
