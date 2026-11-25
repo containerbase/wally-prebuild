@@ -13,6 +13,11 @@
       "matchPackageNames": ["UpliftGames/wally"],
       "matchDatasources": ["github-releases"],
       "extractVersion": "v(?<version>.+)"
+    },
+    {
+      "description": "Keep containerbase v14 while we build jammy, v15 doesn't install there",
+      "matchPackageNames": ["ghcr.io/containerbase/base"],
+      "allowedVersions": "<15"
     }
   ]
 }
